@@ -28,11 +28,40 @@ int main(int argc, char* args[])
 		return 1;
 	}
 
+	//Requests 3.2 Core OpenGL
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
+
+	SDL_GLContext gl_Context = SDL_GL_CreateContext(window);
+	if (gl_Context = nullptr)
+	{
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "SDL_CreateContext Failed", SDL_GetError(), NULL);
+
+		SDL_DestroyWindow(window);
+		SDL_Quit();
+
+		return 1;
+	}
+
+	//Init Glew
+	glewExperimental = GL_TRUE;
+	GLenum err = glewInit();
+	if (glewInit() != GLEW_OK)
+	{
+		//Show error
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "GLEW init failed", (char*)glewGetErrorString(err), NULL);
+		SDL_DestroyWindow(window);
+		SDL_Quit();
+
+		return 1;
+	}
+
 	//Event loop, we will loop until running is set to false, usually if escape has been pressed or window is closed
 	bool running = true;
-	int RED = 255;
-	int GREEN = 0;
-	int BLUE = 128;
+	float RED = 255;
+	float GREEN = 0;
+	float BLUE = 128;
 	//SDL Event structure, this will be checked in the while loop
 	SDL_Event ev;
 	while (running)
@@ -69,19 +98,17 @@ int main(int argc, char* args[])
 			}
 		}
 
-		//Grab the window surface, please note we DON'T need to free the memory on this, it will be automatically collected
-		//when the window is destroyed
-		//https://wiki.libsdl.org/SDL_GetWindowSurface
-		SDL_Surface* screenSurface= SDL_GetWindowSurface(window);
-		//Fill the surface with black
-		//https://wiki.libsdl.org/SDL_FillRect
-		//https://wiki.libsdl.org/SDL_MapRGB
-		SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, RED, GREEN, BLUE));
+		//Update Game and Draw with OpenGL!
+		glClearColor(RED, GREEN, BLUE, 1.0);
+		glClear(GL_COLOR_BUFFER_BIT);
 
-		//Update the surface on the screen
-		//https://wiki.libsdl.org/SDL_UpdateWindowSurface
-		SDL_UpdateWindowSurface(window);
+		SDL_GL_SwapWindow(window);
+
 	}
+
+	//Delete Context
+	SDL_GL_DeleteContext(gl_Context);
+
 
 
 	//Destroy the window and quit SDL2, NB we should do this after all cleanup in this order!!!
