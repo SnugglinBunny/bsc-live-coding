@@ -1,4 +1,4 @@
-///main.cpp - defines the entry point of the application
+//main.cpp - defines the entry point of the application
 
 #include "main.h"
 
@@ -16,25 +16,25 @@ int main(int argc, char* args[])
 
 	//Create a window, note we have to free the pointer returned using the DestroyWindow Function
 	//https://wiki.libsdl.org/SDL_CreateWindow
-	SDL_Window* window = SDL_CreateWindow("SDL2 Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1920, 1080, SDL_WINDOW_SHOWN | SDL_WINDOW_BORDERLESS | SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
+	SDL_Window* window = SDL_CreateWindow("SDL2 Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_SHOWN|SDL_WINDOW_OPENGL);
 	//Checks to see if the window has been created, the pointer will have a value of some kind
 	if (window == nullptr)
 	{
 		//Show error
-		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "SDL_CreateWindow failed", SDL_GetError(), NULL);
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "SDL_CreateWindow failed",SDL_GetError(), NULL);
 		//Close the SDL Library
 		//https://wiki.libsdl.org/SDL_Quit
 		SDL_Quit();
 		return 1;
 	}
 
-	//Requests 3.2 Core OpenGL
+	//Request 3.2 Core OpenGL
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
 
 	SDL_GLContext gl_Context = SDL_GL_CreateContext(window);
-	if (gl_Context = nullptr)
+	if (gl_Context == nullptr)
 	{
 		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "SDL_CreateContext Failed", SDL_GetError(), NULL);
 
@@ -44,20 +44,19 @@ int main(int argc, char* args[])
 		return 1;
 	}
 
-	//Init Glew
+	//init GLEW
 	glewExperimental = GL_TRUE;
 	GLenum err = glewInit();
-	if (glewInit() != GLEW_OK)
+	if (err != GLEW_OK)
 	{
 		//Show error
-		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "GLEW init failed", (char*)glewGetErrorString(err), NULL);
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "GLEW Initialisation Failed", (char*)glewGetErrorString(err), NULL);
 		SDL_DestroyWindow(window);
 		SDL_Quit();
 
 		return 1;
 	}
 
-	//Create Vertex Array for the triangle
 	GLuint VertexArrayID;
 	glGenVertexArrays(1, &VertexArrayID);
 	glBindVertexArray(VertexArrayID);
@@ -80,9 +79,6 @@ int main(int argc, char* args[])
 
 	//Event loop, we will loop until running is set to false, usually if escape has been pressed or window is closed
 	bool running = true;
-	float RED = 255;
-	float GREEN = 0;
-	float BLUE = 128;
 	//SDL Event structure, this will be checked in the while loop
 	SDL_Event ev;
 	while (running)
@@ -107,20 +103,11 @@ int main(int argc, char* args[])
 				case SDLK_ESCAPE:
 					running = false;
 					break;
-				case SDLK_1:
-					RED = 128;
-					BLUE = 255;
-					break;
-				case SDLK_2:
-					RED = 255;
-					BLUE = 128;
-					break;
 				}
 			}
 		}
-
-		//Update Game and Draw with OpenGL!
-		glClearColor(RED, GREEN, BLUE, 1.0);
+		//Do rendering here!
+		glClearColor(1.0, 0.0, 0.0, 1.0);
 		glClear(GL_COLOR_BUFFER_BIT);
 
 		// 1rst attribute buffer : vertices
@@ -139,15 +126,12 @@ int main(int argc, char* args[])
 		glDisableVertexAttribArray(0);
 
 		SDL_GL_SwapWindow(window);
-
 	}
-
-	//Delete Context
-	SDL_GL_DeleteContext(gl_Context);
 
 	glDeleteBuffers(1, &vertexbuffer);
 	glDeleteVertexArrays(1, &VertexArrayID);
-
+	//Delete Context
+	SDL_GL_DeleteContext(gl_Context);
 	//Destroy the window and quit SDL2, NB we should do this after all cleanup in this order!!!
 	//https://wiki.libsdl.org/SDL_DestroyWindow
 	SDL_DestroyWindow(window);

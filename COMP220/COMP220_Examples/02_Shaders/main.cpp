@@ -105,46 +105,52 @@ int main(int argc, char* args[])
 	{
 		//Display an error message box
 		//https://wiki.libsdl.org/SDL_ShowSimpleMessageBox
-		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, SDL_GetError(), "SDL_Init failed", NULL);
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "SDL_Init failed", SDL_GetError(), NULL);
 		return 1;
 	}
 
 	//Create a window, note we have to free the pointer returned using the DestroyWindow Function
 	//https://wiki.libsdl.org/SDL_CreateWindow
-	SDL_Window* window = SDL_CreateWindow("SDL2 Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
+	SDL_Window* window = SDL_CreateWindow("SDL2 Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_SHOWN|SDL_WINDOW_OPENGL);
 	//Checks to see if the window has been created, the pointer will have a value of some kind
 	if (window == nullptr)
 	{
 		//Show error
-		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, SDL_GetError(), "SDL_CreateWindow failed", NULL);
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "SDL_CreateWindow failed",SDL_GetError(), NULL);
 		//Close the SDL Library
 		//https://wiki.libsdl.org/SDL_Quit
 		SDL_Quit();
 		return 1;
 	}
 
-	//lets ask for a 3.2 core profile version of OpenGL
+	//Request 3.2 Core OpenGL
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MAJOR_VERSION, 3);
-	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 2);
+	SDL_GL_SetAttribute(SDL_GL_CONTEXT_MINOR_VERSION, 3);
 	SDL_GL_SetAttribute(SDL_GL_CONTEXT_PROFILE_MASK, SDL_GL_CONTEXT_PROFILE_CORE);
-	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
-	SDL_GLContext GL_Context = SDL_GL_CreateContext(window);
-	if (GL_Context == nullptr)
+	SDL_GLContext gl_Context = SDL_GL_CreateContext(window);
+	if (gl_Context == nullptr)
 	{
-		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, SDL_GetError(), "SDL GL Create Context failed", NULL);
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "SDL_CreateContext Failed", SDL_GetError(), NULL);
+
 		SDL_DestroyWindow(window);
 		SDL_Quit();
+
 		return 1;
 	}
-	//Initialize GLEW
-	glewExperimental = GL_TRUE;
-	GLenum glewError = glewInit();
-	if (glewError != GLEW_OK)
-	{
-		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, (char*)glewGetErrorString(glewError), "GLEW Init Failed", NULL);
-	}
 
+	//init GLEW
+	glewExperimental = GL_TRUE;
+	GLenum err = glewInit();
+	if (err != GLEW_OK)
+	{
+		//Show error
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "GLEW Initialisation Failed", (char*)glewGetErrorString(err), NULL);
+		SDL_DestroyWindow(window);
+		SDL_Quit();
+
+		return 1;
+	}
 
 	GLuint VertexArrayID;
 	glGenVertexArrays(1, &VertexArrayID);
@@ -166,7 +172,12 @@ int main(int argc, char* args[])
 	// Give our vertices to OpenGL.
 	glBufferData(GL_ARRAY_BUFFER, sizeof(g_vertex_buffer_data), g_vertex_buffer_data, GL_STATIC_DRAW);
 
-	GLuint programID = LoadShaders("vert.glsl", "frag.glsl");
+	GLint basicProgramID = LoadShaders("vert.glsl", "frag.glsl");
+	if (basicProgramID < 0)
+	{
+		//error message
+		printf("Shaders %s and %s not loaded", "vert.glsl", "frag.glsl");
+	}
 
 	//Event loop, we will loop until running is set to false, usually if escape has been pressed or window is closed
 	bool running = true;
@@ -197,11 +208,11 @@ int main(int argc, char* args[])
 				}
 			}
 		}
+		//Do rendering here!
+		glClearColor(0.0, 0.0, 0.0, 1.0);
+		glClear(GL_COLOR_BUFFER_BIT);
 
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
-		glClear(GL_COLOR_BUFFER_BIT|GL_DEPTH_BUFFER_BIT);
-
-		glUseProgram(programID);
+		glUseProgram(basicProgramID);
 
 		// 1rst attribute buffer : vertices
 		glEnableVertexAttribArray(0);
@@ -221,11 +232,11 @@ int main(int argc, char* args[])
 		SDL_GL_SwapWindow(window);
 	}
 
-	glDeleteVertexArrays(1, &VertexArrayID);
+	glDeleteProgram(basicProgramID);
 	glDeleteBuffers(1, &vertexbuffer);
-	glDeleteProgram(programID);
-
-	SDL_GL_DeleteContext(GL_Context);
+	glDeleteVertexArrays(1, &VertexArrayID);
+	//Delete Context
+	SDL_GL_DeleteContext(gl_Context);
 	//Destroy the window and quit SDL2, NB we should do this after all cleanup in this order!!!
 	//https://wiki.libsdl.org/SDL_DestroyWindow
 	SDL_DestroyWindow(window);

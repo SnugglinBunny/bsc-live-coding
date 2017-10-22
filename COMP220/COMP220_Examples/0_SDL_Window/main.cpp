@@ -10,18 +10,18 @@ int main(int argc, char* args[])
 	{
 		//Display an error message box
 		//https://wiki.libsdl.org/SDL_ShowSimpleMessageBox
-		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "SDL_Init failed", SDL_GetError(), NULL);
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, SDL_GetError(), "SDL_Init failed", NULL);
 		return 1;
 	}
 
 	//Create a window, note we have to free the pointer returned using the DestroyWindow Function
 	//https://wiki.libsdl.org/SDL_CreateWindow
-	SDL_Window* window = SDL_CreateWindow("SDL2 Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1920, 1080, SDL_WINDOW_SHOWN | SDL_WINDOW_BORDERLESS | SDL_WINDOW_RESIZABLE | SDL_WINDOW_OPENGL);
+	SDL_Window* window = SDL_CreateWindow("SDL2 Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 800, 600, SDL_WINDOW_SHOWN );
 	//Checks to see if the window has been created, the pointer will have a value of some kind
 	if (window == nullptr)
 	{
 		//Show error
-		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "SDL_CreateWindow failed", SDL_GetError(), NULL);
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, SDL_GetError(), "SDL_CreateWindow failed", NULL);
 		//Close the SDL Library
 		//https://wiki.libsdl.org/SDL_Quit
 		SDL_Quit();
@@ -30,9 +30,6 @@ int main(int argc, char* args[])
 
 	//Event loop, we will loop until running is set to false, usually if escape has been pressed or window is closed
 	bool running = true;
-	int RED = 255;
-	int GREEN = 0;
-	int BLUE = 128;
 	//SDL Event structure, this will be checked in the while loop
 	SDL_Event ev;
 	while (running)
@@ -57,14 +54,6 @@ int main(int argc, char* args[])
 				case SDLK_ESCAPE:
 					running = false;
 					break;
-				case SDLK_1:
-					RED = 128;
-					BLUE = 255;
-					break;
-				case SDLK_2:
-					RED = 255;
-					BLUE = 128;
-					break;
 				}
 			}
 		}
@@ -76,7 +65,7 @@ int main(int argc, char* args[])
 		//Fill the surface with black
 		//https://wiki.libsdl.org/SDL_FillRect
 		//https://wiki.libsdl.org/SDL_MapRGB
-		SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, RED, GREEN, BLUE));
+		SDL_FillRect(screenSurface, NULL, SDL_MapRGB(screenSurface->format, 0, 0, 0));
 
 		//Update the surface on the screen
 		//https://wiki.libsdl.org/SDL_UpdateWindowSurface
