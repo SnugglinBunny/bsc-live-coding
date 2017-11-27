@@ -1,0 +1,89 @@
+﻿  test.c
+  IKTrajectoryHelper.cpp
+  PhysicsClient.cpp
+  PhysicsServer.cpp
+  PhysicsServerSharedMemory.cpp
+  PhysicsServerCommandProcessor.cpp
+  b3PluginManager.cpp
+  PhysicsDirect.cpp
+  PhysicsLoopBack.cpp
+  PhysicsLoopBackC_API.cpp
+  PhysicsClientSharedMemory.cpp
+  PhysicsClientC_API.cpp
+  Win32SharedMemory.cpp
+  PosixSharedMemory.cpp
+  TinyRendererVisualShapeConverter.cpp
+  SimpleCamera.cpp
+  geometry.cpp
+  model.cpp
+  tgaimage.cpp
+  our_gl.cpp
+  TinyRenderer.cpp
+  b3ResourcePath.cpp
+  RobotLoggingUtil.cpp
+  b3Clock.cpp
+  ChromeTraceUtil.cpp
+  tinystr.cpp
+  tinyxml.cpp
+  tinyxmlerror.cpp
+..\..\examples\SharedMemory\PhysicsServerCommandProcessor.cpp(1663): warning C4316: 'PhysicsServerCommandProcessorInternalData': object allocated on the heap may not be aligned 16
+..\..\examples\SharedMemory\TinyRendererVisualShapeConverter.cpp(117): warning C4316: 'TinyRendererVisualShapeConverterInternalData': object allocated on the heap may not be aligned 16
+..\..\examples\SharedMemory\PhysicsServerCommandProcessor.cpp(4545): warning C4316: 'btMultiBodyJointFeedback': object allocated on the heap may not be aligned 16
+..\..\examples\SharedMemory\TinyRendererVisualShapeConverter.cpp(575): warning C4838: conversion from 'btScalar' to 'float' requires a narrowing conversion
+..\..\examples\SharedMemory\TinyRendererVisualShapeConverter.cpp(627): warning C4316: 'TinyRenderObjectData': object allocated on the heap may not be aligned 16
+..\..\examples\SharedMemory\TinyRendererVisualShapeConverter.cpp(728): warning C4838: conversion from 'const double' to 'float' requires a narrowing conversion
+  tinyxmlparser.cpp
+  tiny_obj_loader.cpp
+  LoadMeshFromCollada.cpp
+  LoadMeshFromObj.cpp
+  Wavefront2GLInstanceGraphicsShape.cpp
+..\..\examples\ThirdPartyLibs\Wavefront\tiny_obj_loader.cpp(214): warning C4018: '<': signed/unsigned mismatch
+  BulletMJCFImporter.cpp
+  BulletUrdfImporter.cpp
+..\..\examples\ThirdPartyLibs\Wavefront\tiny_obj_loader.cpp(401): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(2260): note: see declaration of 'sscanf'
+..\..\examples\ThirdPartyLibs\Wavefront\tiny_obj_loader.cpp(651): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(2260): note: see declaration of 'sscanf'
+..\..\examples\ThirdPartyLibs\Wavefront\tiny_obj_loader.cpp(667): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(2260): note: see declaration of 'sscanf'
+..\..\examples\ThirdPartyLibs\Wavefront\tiny_obj_loader.cpp(723): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(2260): note: see declaration of 'sscanf'
+  MyMultiBodyCreator.cpp
+  URDF2Bullet.cpp
+  UrdfParser.cpp
+  urdfStringSplit.cpp
+..\..\examples\Importers\ImportMJCFDemo\BulletMJCFImporter.cpp(399): warning C4316: 'UrdfModel': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportMJCFDemo\BulletMJCFImporter.cpp(409): warning C4316: 'UrdfModel': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportMJCFDemo\BulletMJCFImporter.cpp(412): warning C4316: 'UrdfLink': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportMJCFDemo\BulletMJCFImporter.cpp(589): warning C4316: 'UrdfJoint': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportMJCFDemo\BulletMJCFImporter.cpp(1028): warning C4316: 'UrdfLink': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportMJCFDemo\BulletMJCFImporter.cpp(1222): warning C4316: 'UrdfJoint': object allocated on the heap may not be aligned 16
+  b3ImportMeshUtility.cpp
+..\..\examples\Importers\ImportURDFDemo\MyMultiBodyCreator.cpp(65): warning C4316: 'GenericConstraintUserInfo': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportURDFDemo\MyMultiBodyCreator.cpp(148): warning C4316: 'GenericConstraintUserInfo': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportURDFDemo\MyMultiBodyCreator.cpp(172): warning C4316: 'GenericConstraintUserInfo': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportObjDemo\Wavefront2GLInstanceGraphicsShape.cpp(52): warning C4018: '<': signed/unsigned mismatch
+..\..\examples\Importers\ImportObjDemo\Wavefront2GLInstanceGraphicsShape.cpp(79): warning C4018: '<': signed/unsigned mismatch
+..\..\examples\Importers\ImportObjDemo\Wavefront2GLInstanceGraphicsShape.cpp(104): warning C4018: '<': signed/unsigned mismatch
+..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(605): warning C4316: 'UrdfMaterial': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(662): warning C4316: 'UrdfMaterial': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(1511): warning C4316: 'UrdfMaterial': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(1535): warning C4316: 'UrdfLink': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(1584): warning C4316: 'UrdfJoint': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(1674): warning C4316: 'UrdfModel': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(1710): warning C4316: 'UrdfMaterial': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(1734): warning C4316: 'UrdfLink': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(1783): warning C4316: 'UrdfJoint': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportMeshUtility\b3ImportMeshUtility.cpp(39): warning C4018: '<': signed/unsigned mismatch
+  stb_image.cpp
+..\..\examples\ThirdPartyLibs\stb_image\stb_image.cpp(228): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(207): note: see declaration of 'fopen'
+..\..\examples\ThirdPartyLibs\stb_image\stb_image.cpp(290): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(207): note: see declaration of 'fopen'
+..\..\examples\ThirdPartyLibs\stb_image\stb_image.cpp(328): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(207): note: see declaration of 'fopen'
+..\..\examples\ThirdPartyLibs\stb_image\stb_image.cpp(4220): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(207): note: see declaration of 'fopen'
+     Creating library ..\..\bin\Test_PhysicsServerLoopBack_vs2010_debug.lib and object ..\..\bin\Test_PhysicsServerLoopBack_vs2010_debug.exp
+  Test_PhysicsServerLoopBack.vcxproj -> C:\Users\jr191353\Downloads\bsc-live-coding\Libraries\bullet3-2.87\build3\vs2010\..\..\bin\Test_PhysicsServerLoopBack_vs2010_debug.exe
+  Test_PhysicsServerLoopBack.vcxproj -> ..\..\bin\Test_PhysicsServerLoopBack_vs2010_debug.pdb (Partial PDB)

@@ -1,0 +1,59 @@
+﻿  test_invdyn_bullet.cpp
+  b3ResourcePath.cpp
+  MyMultiBodyCreator.cpp
+  BulletUrdfImporter.cpp
+  urdfStringSplit.cpp
+  UrdfParser.cpp
+  URDF2Bullet.cpp
+  b3ImportMeshUtility.cpp
+..\..\examples\Importers\ImportMeshUtility\b3ImportMeshUtility.cpp(39): warning C4018: '<': signed/unsigned mismatch
+..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(605): warning C4316: 'UrdfMaterial': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(662): warning C4316: 'UrdfMaterial': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(1511): warning C4316: 'UrdfMaterial': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(1535): warning C4316: 'UrdfLink': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(1584): warning C4316: 'UrdfJoint': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(1674): warning C4316: 'UrdfModel': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(1710): warning C4316: 'UrdfMaterial': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(1734): warning C4316: 'UrdfLink': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(1783): warning C4316: 'UrdfJoint': object allocated on the heap may not be aligned 16
+  stb_image.cpp
+..\..\examples\ThirdPartyLibs\stb_image\stb_image.cpp(228): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(207): note: see declaration of 'fopen'
+..\..\examples\ThirdPartyLibs\stb_image\stb_image.cpp(290): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(207): note: see declaration of 'fopen'
+..\..\examples\ThirdPartyLibs\stb_image\stb_image.cpp(328): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(207): note: see declaration of 'fopen'
+..\..\examples\ThirdPartyLibs\stb_image\stb_image.cpp(4220): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(207): note: see declaration of 'fopen'
+  b3Clock.cpp
+  btBulletWorldImporter.cpp
+  btWorldImporter.cpp
+  bChunk.cpp
+  bDNA.cpp
+..\..\examples\Importers\ImportURDFDemo\MyMultiBodyCreator.cpp(65): warning C4316: 'GenericConstraintUserInfo': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportURDFDemo\MyMultiBodyCreator.cpp(148): warning C4316: 'GenericConstraintUserInfo': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportURDFDemo\MyMultiBodyCreator.cpp(172): warning C4316: 'GenericConstraintUserInfo': object allocated on the heap may not be aligned 16
+  bFile.cpp
+  btBulletFile.cpp
+  Wavefront2GLInstanceGraphicsShape.cpp
+  LoadMeshFromObj.cpp
+  LoadMeshFromCollada.cpp
+  tiny_obj_loader.cpp
+  tinystr.cpp
+  tinyxml.cpp
+..\..\examples\ThirdPartyLibs\Wavefront\tiny_obj_loader.cpp(214): warning C4018: '<': signed/unsigned mismatch
+  tinyxmlerror.cpp
+  tinyxmlparser.cpp
+..\..\examples\ThirdPartyLibs\Wavefront\tiny_obj_loader.cpp(401): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(2260): note: see declaration of 'sscanf'
+..\..\examples\ThirdPartyLibs\Wavefront\tiny_obj_loader.cpp(651): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(2260): note: see declaration of 'sscanf'
+..\..\examples\ThirdPartyLibs\Wavefront\tiny_obj_loader.cpp(667): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(2260): note: see declaration of 'sscanf'
+..\..\examples\ThirdPartyLibs\Wavefront\tiny_obj_loader.cpp(723): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(2260): note: see declaration of 'sscanf'
+..\..\examples\Importers\ImportObjDemo\Wavefront2GLInstanceGraphicsShape.cpp(52): warning C4018: '<': signed/unsigned mismatch
+..\..\examples\Importers\ImportObjDemo\Wavefront2GLInstanceGraphicsShape.cpp(79): warning C4018: '<': signed/unsigned mismatch
+..\..\examples\Importers\ImportObjDemo\Wavefront2GLInstanceGraphicsShape.cpp(104): warning C4018: '<': signed/unsigned mismatch
+  Test_InverseForwardDynamics.vcxproj -> C:\Users\jr191353\Downloads\bsc-live-coding\Libraries\bullet3-2.87\build3\vs2010\..\..\bin\Test_InverseForwardDynamics_vs2010_debug.exe
+  Test_InverseForwardDynamics.vcxproj -> ..\..\bin\Test_InverseForwardDynamics_vs2010_debug.pdb (Partial PDB)

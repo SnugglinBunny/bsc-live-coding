@@ -1,0 +1,5 @@
+﻿  Pendulum.cpp
+..\..\examples\MultiBody\Pendulum.cpp(195): warning C4316: 'Pendulum': object allocated on the heap may not be aligned 16
+..\..\examples\MultiBody\Pendulum.cpp(225): warning C4316: 'Pendulum': object allocated on the heap may not be aligned 16
+  Test_BulletDynamics.vcxproj -> C:\Users\jr191353\Downloads\bsc-live-coding\Libraries\bullet3-2.87\build3\vs2010\..\..\bin\Test_BulletDynamics_vs2010_debug.exe
+  Test_BulletDynamics.vcxproj -> ..\..\bin\Test_BulletDynamics_vs2010_debug.pdb (Partial PDB)
