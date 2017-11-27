@@ -1,0 +1,18 @@
+﻿  clew.c
+  glew.c
+  OpenGLExampleBrowser.cpp
+  OpenGLGuiHelper.cpp
+  b3Clock.cpp
+  ChromeTraceUtil.cpp
+  GraphingTexture.cpp
+  GwenParameterInterface.cpp
+  GwenProfileWindow.cpp
+  GwenTextureWindow.cpp
+  gwenUserInterface.cpp
+  CollisionShape2TriangleMesh.cpp
+  b3ResourcePath.cpp
+  GL_ShapeDrawer.cpp
+  InProcessExampleBrowser.cpp
+D:\bsc-live-coding\Libraries\bullet3-2.87\src\Bullet3Common/b3CommandLineArgs.h(92): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (compiling source file ..\..\examples\ExampleBrowser\InProcessExampleBrowser.cpp)
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\string.h(136): note: see declaration of 'strcpy' (compiling source file ..\..\examples\ExampleBrowser\InProcessExampleBrowser.cpp)
+  BulletExampleBrowserLib.vcxproj -> D:\bsc-live-coding\Libraries\bullet3-2.87\build3\vs2010\..\..\bin\BulletExampleBrowserLib_vs2010_debug.lib

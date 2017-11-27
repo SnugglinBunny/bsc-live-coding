@@ -100,8 +100,8 @@
       <PreprocessorDefinitions>_MBCS;BT_USE_DOUBLE_PRECISION;_DEBUG=1;%(PreprocessorDefinitions)</PreprocessorDefinitions>
     </ClCompile>
     <Link>
-      <AdditionalLibraryDirectories>..\..\..\Libraries\SDL2_image-2.0.1\lib\x64;..\..\..\Libraries\SDL2-2.0.6\lib\x64;..\..\..\Libraries\glew-2.1.0\lib\Release\x64;..\..\..\Libraries\assimp\lib;C:\Users\jr191353\Downloads\bsc-live-coding\Libraries\bullet3-2.87\bin</AdditionalLibraryDirectories>
-      <AdditionalDependencies>assimp-vc140-mt.lib;glew32.lib;SDL2.lib;SDL2main.lib;OpenGL32.lib;SDL2_image.lib;BulletDynamics_vs2010_debug.lib;BulletCollision_vs2010_debug.lib;LinearMath_vs2010_debug.lib</AdditionalDependencies>
+      <AdditionalLibraryDirectories>..\..\..\Libraries\SDL2_image-2.0.1\lib\x64;..\..\..\Libraries\SDL2-2.0.6\lib\x64;..\..\..\Libraries\glew-2.1.0\lib\Release\x64;..\..\..\Libraries\assimp\lib;..\..\..\Libraries\bullet3-2.87\bin</AdditionalLibraryDirectories>
+      <AdditionalDependencies>assimp-vc140-mt.lib;glew32.lib;SDL2.lib;SDL2main.lib;OpenGL32.lib;SDL2_image.lib;BulletDynamics_vs2010_x64_debug.lib;BulletCollision_vs2010_x64_debug.lib;LinearMath_vs2010_x64_debug.lib</AdditionalDependencies>
       <SubSystem>Console</SubSystem>
     </Link>
     <PostBuildEvent>

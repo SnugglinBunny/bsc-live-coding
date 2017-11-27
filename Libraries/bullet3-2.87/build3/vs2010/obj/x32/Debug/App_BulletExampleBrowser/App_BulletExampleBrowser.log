@@ -1,0 +1,260 @@
+﻿  clew.c
+  glew.c
+  main.cpp
+  ExampleEntries.cpp
+  InverseKinematicsExample.cpp
+  geometry.cpp
+  model.cpp
+  tgaimage.cpp
+D:\bsc-live-coding\Libraries\bullet3-2.87\src\Bullet3Common/b3CommandLineArgs.h(92): warning C4996: 'strcpy': This function or variable may be unsafe. Consider using strcpy_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details. (compiling source file ..\..\examples\ExampleBrowser\main.cpp)
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\string.h(136): note: see declaration of 'strcpy' (compiling source file ..\..\examples\ExampleBrowser\main.cpp)
+  our_gl.cpp
+  TinyRenderer.cpp
+  IKTrajectoryHelper.cpp
+  PhysicsClientC_API.cpp
+  PhysicsServerExample.cpp
+  PhysicsServerExampleBullet2.cpp
+  PhysicsClientExample.cpp
+  PhysicsServer.cpp
+  PhysicsServerSharedMemory.cpp
+  PhysicsClientSharedMemory.cpp
+..\..\examples\SharedMemory\PhysicsServerExample.cpp(856): warning C4316: 'MultithreadedDebugDrawer': object allocated on the heap may not be aligned 16
+..\..\examples\SharedMemory\PhysicsServerExample.cpp(2422): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
+..\..\examples\SharedMemory\PhysicsServerExample.cpp(2426): warning C4838: conversion from 'double' to 'float' requires a narrowing conversion
+..\..\examples\SharedMemory\PhysicsServerExample.cpp(3023): warning C4316: 'MultiThreadedOpenGLGuiHelper': object allocated on the heap may not be aligned 16
+..\..\examples\SharedMemory\PhysicsServerExample.cpp(3029): warning C4316: 'PhysicsServerExample': object allocated on the heap may not be aligned 16
+  PhysicsClientSharedMemory_C_API.cpp
+  PhysicsClientSharedMemory2.cpp
+  PhysicsClientSharedMemory2_C_API.cpp
+  SharedMemoryCommandProcessor.cpp
+  SharedMemoryInProcessPhysicsC_API.cpp
+  PhysicsClient.cpp
+  PosixSharedMemory.cpp
+  Win32SharedMemory.cpp
+  InProcessMemory.cpp
+  PhysicsDirect.cpp
+  PhysicsDirectC_API.cpp
+  PhysicsLoopBack.cpp
+  PhysicsLoopBackC_API.cpp
+  PhysicsServerCommandProcessor.cpp
+  b3PluginManager.cpp
+  TinyRendererVisualShapeConverter.cpp
+  MultiThreadingExample.cpp
+  b3PosixThreadSupport.cpp
+  b3Win32ThreadSupport.cpp
+  b3ThreadSupportInterface.cpp
+..\..\examples\SharedMemory\TinyRendererVisualShapeConverter.cpp(117): warning C4316: 'TinyRendererVisualShapeConverterInternalData': object allocated on the heap may not be aligned 16
+..\..\examples\SharedMemory\TinyRendererVisualShapeConverter.cpp(575): warning C4838: conversion from 'btScalar' to 'float' requires a narrowing conversion
+..\..\examples\SharedMemory\TinyRendererVisualShapeConverter.cpp(627): warning C4316: 'TinyRenderObjectData': object allocated on the heap may not be aligned 16
+..\..\examples\SharedMemory\TinyRendererVisualShapeConverter.cpp(728): warning C4838: conversion from 'const double' to 'float' requires a narrowing conversion
+  InverseDynamicsExample.cpp
+  b3RobotSimulatorClientAPI.cpp
+..\..\examples\SharedMemory\PhysicsServerCommandProcessor.cpp(1663): warning C4316: 'PhysicsServerCommandProcessorInternalData': object allocated on the heap may not be aligned 16
+..\..\examples\SharedMemory\PhysicsServerCommandProcessor.cpp(4545): warning C4316: 'btMultiBodyJointFeedback': object allocated on the heap may not be aligned 16
+  BasicExample.cpp
+  Dof6ConstraintTutorial.cpp
+..\..\examples\InverseDynamics\InverseDynamicsExample.cpp(365): warning C4316: 'InverseDynamicsExample': object allocated on the heap may not be aligned 16
+  Tutorial.cpp
+..\..\examples\BasicDemo\BasicExample.cpp(143): warning C4316: 'BasicExample': object allocated on the heap may not be aligned 16
+  Bridge.cpp
+  Chain.cpp
+..\..\examples\Tutorial\Dof6ConstraintTutorial.cpp(533): warning C4316: 'Dof6ConstraintTutorial': object allocated on the heap may not be aligned 16
+  InclinedPlane.cpp
+  MultiPendulum.cpp
+..\..\examples\ExtendedTutorials\Bridge.cpp(146): warning C4316: 'BridgeExample': object allocated on the heap may not be aligned 16
+..\..\examples\ExtendedTutorials\Chain.cpp(133): warning C4316: 'ChainExample': object allocated on the heap may not be aligned 16
+..\..\examples\ExtendedTutorials\InclinedPlane.cpp(386): warning C4316: 'InclinedPlaneExample': object allocated on the heap may not be aligned 16
+  MultipleBoxes.cpp
+  NewtonsCradle.cpp
+  NewtonsRopeCradle.cpp
+..\..\examples\ExtendedTutorials\MultiPendulum.cpp(424): warning C4316: 'MultiPendulumExample': object allocated on the heap may not be aligned 16
+..\..\examples\ExtendedTutorials\MultipleBoxes.cpp(116): warning C4316: 'MultipleBoxesExample': object allocated on the heap may not be aligned 16
+  RigidBodyFromObj.cpp
+..\..\examples\ExtendedTutorials\NewtonsCradle.cpp(368): warning C4316: 'NewtonsCradleExample': object allocated on the heap may not be aligned 16
+  SimpleBox.cpp
+..\..\examples\ExtendedTutorials\NewtonsRopeCradle.cpp(374): warning C4316: 'NewtonsRopeCradleExample': object allocated on the heap may not be aligned 16
+  SimpleCloth.cpp
+  SimpleJoint.cpp
+..\..\examples\ExtendedTutorials\SimpleBox.cpp(114): warning C4316: 'SimpleBoxExample': object allocated on the heap may not be aligned 16
+..\..\examples\ExtendedTutorials\RigidBodyFromObj.cpp(161): warning C4316: 'RigidBodyFromObjExample': object allocated on the heap may not be aligned 16
+  RobotLoggingUtil.cpp
+..\..\examples\ExtendedTutorials\SimpleCloth.cpp(158): warning C4316: 'SimpleClothExample': object allocated on the heap may not be aligned 16
+  NN3DWalkers.cpp
+..\..\examples\ExtendedTutorials\SimpleJoint.cpp(129): warning C4316: 'SimpleJointExample': object allocated on the heap may not be aligned 16
+  CollisionSdkC_Api.cpp
+  CollisionTutorialBullet2.cpp
+  GripperGraspExample.cpp
+  KukaGraspExample.cpp
+  R2D2GraspExample.cpp
+..\..\examples\RoboticsLearning\KukaGraspExample.cpp(302): warning C4316: 'KukaGraspExample': object allocated on the heap may not be aligned 16
+d:\bsc-live-coding\libraries\bullet3-2.87\examples\evolution\NN3DWalkersTimeWarpBase.h(792): warning C4018: '>': signed/unsigned mismatch (compiling source file ..\..\examples\Evolution\NN3DWalkers.cpp)
+d:\bsc-live-coding\libraries\bullet3-2.87\examples\evolution\NN3DWalkersTimeWarpBase.h(809): warning C4018: '>': signed/unsigned mismatch (compiling source file ..\..\examples\Evolution\NN3DWalkers.cpp)
+..\..\examples\Evolution\NN3DWalkers.cpp(705): warning C4316: 'NNWalker': object allocated on the heap may not be aligned 16
+..\..\examples\Evolution\NN3DWalkers.cpp(790): warning C4316: 'NN3DWalkersExample': object allocated on the heap may not be aligned 16
+  Bullet2CollisionSdk.cpp
+  RealTimeBullet3CollisionSdk.cpp
+  BenchmarkDemo.cpp
+  CommonRigidBodyMTBase.cpp
+  MultiThreadedDemo.cpp
+  ForkLiftDemo.cpp
+..\..\examples\Benchmarks\BenchmarkDemo.cpp(1316): warning C4316: 'BenchmarkDemo': object allocated on the heap may not be aligned 16
+  BspConverter.cpp
+  BspLoader.cpp
+  ImportBspExample.cpp
+  SerializeSetup.cpp
+  ImportColladaSetup.cpp
+..\..\examples\ForkLift\ForkLiftDemo.cpp(1213): warning C4316: 'ForkLiftDemo': object allocated on the heap may not be aligned 16
+  LoadMeshFromCollada.cpp
+..\..\examples\Importers\ImportBullet\SerializeSetup.cpp(113): warning C4316: 'SerializeSetup': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportBsp\ImportBspExample.cpp(290): warning C4316: 'BspDemo': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportColladaDemo\ImportColladaSetup.cpp(212): warning C4316: 'ImportColladaSetup': object allocated on the heap may not be aligned 16
+  b3ImportMeshUtility.cpp
+  BulletMJCFImporter.cpp
+  ImportMJCFSetup.cpp
+..\..\examples\Importers\ImportMeshUtility\b3ImportMeshUtility.cpp(39): warning C4018: '<': signed/unsigned mismatch
+  ImportObjExample.cpp
+..\..\examples\Importers\ImportMJCFDemo\BulletMJCFImporter.cpp(399): warning C4316: 'UrdfModel': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportMJCFDemo\BulletMJCFImporter.cpp(409): warning C4316: 'UrdfModel': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportMJCFDemo\BulletMJCFImporter.cpp(412): warning C4316: 'UrdfLink': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportMJCFDemo\BulletMJCFImporter.cpp(589): warning C4316: 'UrdfJoint': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportMJCFDemo\BulletMJCFImporter.cpp(1028): warning C4316: 'UrdfLink': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportMJCFDemo\BulletMJCFImporter.cpp(1222): warning C4316: 'UrdfJoint': object allocated on the heap may not be aligned 16
+  LoadMeshFromObj.cpp
+..\..\examples\Importers\ImportMJCFDemo\ImportMJCFSetup.cpp(383): warning C4316: 'ImportMJCFSetup': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportObjDemo\ImportObjExample.cpp(115): warning C4316: 'ImportObjSetup': object allocated on the heap may not be aligned 16
+  Wavefront2GLInstanceGraphicsShape.cpp
+  ImportSDFSetup.cpp
+  ImportSTLSetup.cpp
+  BulletUrdfImporter.cpp
+..\..\examples\Importers\ImportObjDemo\Wavefront2GLInstanceGraphicsShape.cpp(52): warning C4018: '<': signed/unsigned mismatch
+..\..\examples\Importers\ImportObjDemo\Wavefront2GLInstanceGraphicsShape.cpp(79): warning C4018: '<': signed/unsigned mismatch
+..\..\examples\Importers\ImportObjDemo\Wavefront2GLInstanceGraphicsShape.cpp(104): warning C4018: '<': signed/unsigned mismatch
+..\..\examples\Importers\ImportSTLDemo\ImportSTLSetup.cpp(102): warning C4316: 'ImportSTLSetup': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportSDFDemo\ImportSDFSetup.cpp(338): warning C4316: 'ImportSDFSetup': object allocated on the heap may not be aligned 16
+  ImportURDFSetup.cpp
+  MyMultiBodyCreator.cpp
+  URDF2Bullet.cpp
+  UrdfParser.cpp
+..\..\examples\Importers\ImportURDFDemo\MyMultiBodyCreator.cpp(65): warning C4316: 'GenericConstraintUserInfo': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportURDFDemo\MyMultiBodyCreator.cpp(148): warning C4316: 'GenericConstraintUserInfo': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportURDFDemo\MyMultiBodyCreator.cpp(172): warning C4316: 'GenericConstraintUserInfo': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportURDFDemo\ImportURDFSetup.cpp(408): warning C4316: 'ImportUrdfSetup': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(605): warning C4316: 'UrdfMaterial': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(662): warning C4316: 'UrdfMaterial': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(1511): warning C4316: 'UrdfMaterial': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(1535): warning C4316: 'UrdfLink': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(1584): warning C4316: 'UrdfJoint': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(1674): warning C4316: 'UrdfModel': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(1710): warning C4316: 'UrdfMaterial': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(1734): warning C4316: 'UrdfLink': object allocated on the heap may not be aligned 16
+..\..\examples\Importers\ImportURDFDemo\UrdfParser.cpp(1783): warning C4316: 'UrdfJoint': object allocated on the heap may not be aligned 16
+  urdfStringSplit.cpp
+  btBulletWorldImporter.cpp
+  btWorldImporter.cpp
+  bChunk.cpp
+  bDNA.cpp
+  bFile.cpp
+  btBulletFile.cpp
+  Planar2D.cpp
+  CoordinateSystemDemo.cpp
+  DynamicTexturedCubeDemo.cpp
+  RaytracerSetup.cpp
+  RenderInstancingDemo.cpp
+  TimeSeriesCanvas.cpp
+  TimeSeriesExample.cpp
+..\..\examples\Planar2D\Planar2D.cpp(337): warning C4316: 'Planar2D': object allocated on the heap may not be aligned 16
+..\..\examples\RenderingExamples\RaytracerSetup.cpp(125): warning C4316: 'RaytracerInternalData': object allocated on the heap may not be aligned 16
+  TimeSeriesFontData.cpp
+  TinyRendererSetup.cpp
+  TinyVRGui.cpp
+  btConvexConvexMprAlgorithm.cpp
+  VoronoiFractureDemo.cpp
+  SoftDemo.cpp
+  RollingFrictionDemo.cpp
+..\..\examples\RenderingExamples\TinyRendererSetup.cpp(155): warning C4316: 'TinyRendererSetupInternalData': object allocated on the heap may not be aligned 16
+..\..\examples\RenderingExamples\TinyRendererSetup.cpp(198): warning C4316: 'TinyRenderObjectData': object allocated on the heap may not be aligned 16
+..\..\examples\VoronoiFracture\VoronoiFractureDemo.cpp(829): warning C4316: 'VoronoiFractureDemo': object allocated on the heap may not be aligned 16
+..\..\examples\SoftDemo\SoftDemo.cpp(2354): warning C4316: 'SoftDemo': object allocated on the heap may not be aligned 16
+  btFractureBody.cpp
+..\..\examples\RollingFrictionDemo\RollingFrictionDemo.cpp(292): warning C4316: 'RollingFrictionDemo': object allocated on the heap may not be aligned 16
+  btFractureDynamicsWorld.cpp
+  FractureDemo.cpp
+  MotorDemo.cpp
+  ConstraintDemo.cpp
+  ConstraintPhysicsSetup.cpp
+..\..\examples\FractureDemo\FractureDemo.cpp(408): warning C4316: 'FractureDemo': object allocated on the heap may not be aligned 16
+..\..\examples\DynamicControlDemo\MotorDemo.cpp(449): warning C4316: 'MotorDemo': object allocated on the heap may not be aligned 16
+  Dof6Spring2Setup.cpp
+..\..\examples\Constraints\ConstraintDemo.cpp(887): warning C4316: 'AllConstraintDemo': object allocated on the heap may not be aligned 16
+..\..\examples\Constraints\ConstraintPhysicsSetup.cpp(160): warning C4316: 'ConstraintPhysicsSetup': object allocated on the heap may not be aligned 16
+  TestHingeTorque.cpp
+  Hinge2Vehicle.cpp
+  RaytestDemo.cpp
+..\..\examples\Constraints\Dof6Spring2Setup.cpp(500): warning C4316: 'Dof6Spring2Setup': object allocated on the heap may not be aligned 16
+..\..\examples\Constraints\TestHingeTorque.cpp(240): warning C4316: 'TestHingeTorque': object allocated on the heap may not be aligned 16
+..\..\examples\Vehicles\Hinge2Vehicle.cpp(1177): warning C4316: 'Hinge2Vehicle': object allocated on the heap may not be aligned 16
+  MultiDofDemo.cpp
+..\..\examples\Raycast\RaytestDemo.cpp(331): warning C4316: 'RaytestDemo': object allocated on the heap may not be aligned 16
+  TestJointTorqueSetup.cpp
+  Pendulum.cpp
+  MultiBodySoftContact.cpp
+..\..\examples\MultiBody\MultiDofDemo.cpp(448): warning C4316: 'MultiDofDemo': object allocated on the heap may not be aligned 16
+..\..\examples\MultiBody\Pendulum.cpp(225): warning C4316: 'Pendulum': object allocated on the heap may not be aligned 16
+..\..\examples\MultiBody\TestJointTorqueSetup.cpp(221): warning C4316: 'btMultiBodyJointFeedback': object allocated on the heap may not be aligned 16
+..\..\examples\MultiBody\TestJointTorqueSetup.cpp(433): warning C4316: 'TestJointTorqueSetup': object allocated on the heap may not be aligned 16
+  MultiBodyConstraintFeedback.cpp
+  InvertedPendulumPDControl.cpp
+..\..\examples\MultiBody\MultiBodySoftContact.cpp(172): warning C4316: 'MultiBodySoftContact': object allocated on the heap may not be aligned 16
+  RigidBodySoftContact.cpp
+..\..\examples\MultiBody\MultiBodyConstraintFeedback.cpp(217): warning C4316: 'btMultiBodyJointFeedback': object allocated on the heap may not be aligned 16
+..\..\examples\MultiBody\MultiBodyConstraintFeedback.cpp(323): warning C4838: conversion from 'const btScalar' to 'float' requires a narrowing conversion
+..\..\examples\MultiBody\MultiBodyConstraintFeedback.cpp(430): warning C4316: 'MultiBodyConstraintFeedbackSetup': object allocated on the heap may not be aligned 16
+  stb_image.cpp
+..\..\examples\ThirdPartyLibs\stb_image\stb_image.cpp(228): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(207): note: see declaration of 'fopen'
+..\..\examples\ThirdPartyLibs\stb_image\stb_image.cpp(290): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(207): note: see declaration of 'fopen'
+..\..\examples\ThirdPartyLibs\stb_image\stb_image.cpp(328): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(207): note: see declaration of 'fopen'
+..\..\examples\ThirdPartyLibs\stb_image\stb_image.cpp(4220): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(207): note: see declaration of 'fopen'
+  tiny_obj_loader.cpp
+  tinystr.cpp
+  tinyxml.cpp
+..\..\examples\RigidBody\RigidBodySoftContact.cpp(188): warning C4316: 'RigidBodySoftContact': object allocated on the heap may not be aligned 16
+..\..\examples\MultiBody\InvertedPendulumPDControl.cpp(271): warning C4838: conversion from 'const btScalar' to 'float' requires a narrowing conversion
+..\..\examples\MultiBody\InvertedPendulumPDControl.cpp(363): warning C4316: 'btMultiBodyJointFeedback': object allocated on the heap may not be aligned 16
+..\..\examples\MultiBody\InvertedPendulumPDControl.cpp(464): warning C4316: 'InvertedPendulumPDControl': object allocated on the heap may not be aligned 16
+  tinyxmlerror.cpp
+..\..\examples\ThirdPartyLibs\Wavefront\tiny_obj_loader.cpp(214): warning C4018: '<': signed/unsigned mismatch
+..\..\examples\ThirdPartyLibs\Wavefront\tiny_obj_loader.cpp(401): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(2260): note: see declaration of 'sscanf'
+..\..\examples\ThirdPartyLibs\Wavefront\tiny_obj_loader.cpp(651): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(2260): note: see declaration of 'sscanf'
+..\..\examples\ThirdPartyLibs\Wavefront\tiny_obj_loader.cpp(667): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(2260): note: see declaration of 'sscanf'
+..\..\examples\ThirdPartyLibs\Wavefront\tiny_obj_loader.cpp(723): warning C4996: 'sscanf': This function or variable may be unsafe. Consider using sscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.15063.0\ucrt\stdio.h(2260): note: see declaration of 'sscanf'
+  tinyxmlparser.cpp
+  Jacobian.cpp
+  LinearR2.cpp
+  LinearR3.cpp
+  LinearR4.cpp
+  MatrixRmn.cpp
+  Misc.cpp
+  Node.cpp
+  Tree.cpp
+  VectorRn.cpp
+  GyroscopicSetup.cpp
+  PairBench.cpp
+  GpuConvexScene.cpp
+  GpuRigidBodyDemo.cpp
+d:\bsc-live-coding\libraries\bullet3-2.87\examples\opencl\rigidbody\GpuRigidBodyDemoInternalData.h(20): warning C4099: 'b3DynamicBvhBroadphase': type name first seen using 'struct' now seen using 'class' (compiling source file ..\..\examples\OpenCL\rigidbody\GpuConvexScene.cpp)
+  D:\bsc-live-coding\Libraries\bullet3-2.87\src\Bullet3OpenCL/RigidBody/b3GpuRigidBodyPipeline.h(35): note: see declaration of 'b3DynamicBvhBroadphase' (compiling source file ..\..\examples\OpenCL\rigidbody\GpuConvexScene.cpp)
+d:\bsc-live-coding\libraries\bullet3-2.87\examples\opencl\rigidbody\GpuRigidBodyDemoInternalData.h(20): warning C4099: 'b3DynamicBvhBroadphase': type name first seen using 'struct' now seen using 'class' (compiling source file ..\..\examples\OpenCL\rigidbody\GpuRigidBodyDemo.cpp)
+  D:\bsc-live-coding\Libraries\bullet3-2.87\src\Bullet3OpenCL/RigidBody/b3GpuRigidBodyPipeline.h(35): note: see declaration of 'b3DynamicBvhBroadphase' (compiling source file ..\..\examples\OpenCL\rigidbody\GpuRigidBodyDemo.cpp)
+..\..\examples\GyroscopicDemo\GyroscopicSetup.cpp(137): warning C4316: 'GyroscopicSetup': object allocated on the heap may not be aligned 16
+..\..\examples\OpenCL\rigidbody\GpuRigidBodyDemo.cpp(82): warning C4316: 'GpuRigidBodyDemoInternalData': object allocated on the heap may not be aligned 16
+     Creating library ..\..\bin\App_BulletExampleBrowser_vs2010_debug.lib and object ..\..\bin\App_BulletExampleBrowser_vs2010_debug.exp
+  App_BulletExampleBrowser.vcxproj -> D:\bsc-live-coding\Libraries\bullet3-2.87\build3\vs2010\..\..\bin\App_BulletExampleBrowser_vs2010_debug.exe
+  App_BulletExampleBrowser.vcxproj -> ..\..\bin\App_BulletExampleBrowser_vs2010_debug.pdb (Partial PDB)

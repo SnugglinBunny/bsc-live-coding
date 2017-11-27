@@ -254,6 +254,19 @@ int main(int argc, char* args[])
 
 	}
 
+	delete dynamicsWorld;
+
+	//delete solver
+	delete solver;
+
+	//delete broadphase
+	delete overlappingPairCache;
+
+	//delete dispatcher
+	delete dispatcher;
+
+	delete collisionConfiguration;
+
 	auto iter = meshes.begin();
 	while (iter != meshes.end())
 	{
@@ -273,19 +286,6 @@ int main(int argc, char* args[])
 
 	glDeleteProgram(programID);
 	glDeleteTextures(1, &textureID);
-
-	delete dynamicsWorld;
-
-	//delete solver
-	delete solver;
-
-	//delete broadphase
-	delete overlappingPairCache;
-
-	//delete dispatcher
-	delete dispatcher;
-
-	delete collisionConfiguration;
 
 	//Delete context
 	SDL_GL_DeleteContext(GL_Context);
