@@ -56,42 +56,47 @@ int main(int argc, char* args[])
 	//unsigned int numberOfVerts = 0;
 	//unsigned int numberOfIndices = 0;
 	//loadModelFromFile("Tank1.FBX", vertexbuffer, elementbuffer, numberOfVerts, numberOfIndices);
-
+	/*
 	std::vector<Mesh*> meshes;
 	loadMeshesFromFile("Tank1.FBX", meshes);
 
-	GLuint textureID = loadTextureFromFile("Tank1DF.png");
+	GLuint textureID = loadTextureFromFile("Tank1DF.png");*/
 
+	GameObject * armouredCar = new GameObject();
+	armouredCar->loadMeshFromFile("Tank1.FBX");
+	armouredCar->loadDiffuseMap("Tank1DF.png");
+	armouredCar->setPostition(glm::vec3(0.0f, 5.0f, 0.0f));
+	armouredCar->loadShaderProgram("textureVert.glsl", "textureFrag.glsl");
+
+	/*
 	vec3 trianglePosition = vec3(0.0f,0.0f,0.0f);
 	vec3 triangleScale = vec3(1.0f, 1.0f, 1.0f);
 	vec3 triangleRotation = vec3(radians(0.0f), 0.0f, 0.0f);
 
-	
+
 	mat4 translationMatrix = translate(trianglePosition);
 	mat4 scaleMatrix = scale(triangleScale);
 	mat4 rotationMatrix= rotate(triangleRotation.x, vec3(1.0f, 0.0f, 0.0f))*rotate(triangleRotation.y, vec3(0.0f, 1.0f, 0.0f))*rotate(triangleRotation.z, vec3(0.0f, 0.0f, 1.0f));
 
 	mat4 modelMatrix = translationMatrix*rotationMatrix*scaleMatrix;
-
+	*/
 	// Camera Properties
 	vec3 cameraPosition = vec3(0.0f, 0.0f, -8.0f);
 	vec3 cameraTarget = vec3(0.0f, 0.0f, 0.0f);
 	vec3 cameraUp = vec3(0.0f, 1.0f, 0.0f);
 	vec3 cameraDirection = vec3(0.0f);
-	vec3 FPScameraPos = vec3(0.0f);	
+	vec3 FPScameraPos = vec3(0.0f);
 	float CameraX = 0.0f;
 	float CameraY = 0.0f;
 	float CameraDistance = (float)(cameraTarget - cameraPosition).length();
-	
+
 
 	mat4 viewMatrix = lookAt(cameraPosition, cameraTarget, cameraUp);
 
 	mat4 projectionMatrix = perspective(radians(90.0f), float(800 / 600), 0.1f, 100.0f);
 
-
+	/*
 	GLuint programID = LoadShaders("textureVert.glsl", "textureFrag.glsl");
-
-	
 
 	static const GLfloat fragColour[] = { 0.0f,1.0f,0.0f,1.0f };
 
@@ -101,6 +106,7 @@ int main(int argc, char* args[])
 	GLint viewMatrixLocation = glGetUniformLocation(programID, "viewMatrix");
 	GLint projectionMatrixLocation = glGetUniformLocation(programID, "projectionMatrix");
 	GLint textureLocation = glGetUniformLocation(programID, "baseTexture");
+	*/
 
 	SDL_ShowCursor(SDL_DISABLE);
 	SDL_SetRelativeMouseMode(SDL_bool(SDL_ENABLE));
@@ -139,7 +145,7 @@ int main(int argc, char* args[])
 				cameraTarget = cameraPosition + CameraDistance * vec3(cos(CameraX), tan(CameraY), sin(CameraX));
 				// Normalised camera direction
 				cameraDirection = normalize(cameraTarget - cameraPosition);
-				
+
 				break;
 
 				//KEYDOWN Message, called when a key has been pressed down
@@ -151,20 +157,6 @@ int main(int argc, char* args[])
 				case SDLK_ESCAPE:
 					running = false;
 					break;
-				case SDLK_RIGHT:
-					triangleRotation.y += 0.1f;
-					break;
-				case SDLK_LEFT:
-					triangleRotation.y -= 0.1f;
-					break;
-				case SDLK_UP:
-					triangleRotation.x += 0.1f;
-					break;
-				case SDLK_DOWN:
-					triangleRotation.x -= 0.1f;
-					break;
-
-
 				case SDLK_w:
 					FPScameraPos = cameraDirection * 0.1f;
 					break;
@@ -185,9 +177,10 @@ int main(int argc, char* args[])
 		//Update Game and Draw with OpenGL!!
 
 		//Recalculate translations
-		rotationMatrix = rotate(triangleRotation.x, vec3(1.0f, 0.0f, 0.0f))*rotate(triangleRotation.y, vec3(0.0f, 1.0f, 0.0f))*rotate(triangleRotation.z, vec3(1.0f, 0.0f, 1.0f));
-		modelMatrix = translationMatrix * rotationMatrix * scaleMatrix;
-		viewMatrix = lookAt(cameraPosition, cameraTarget, cameraUp);
+		//rotationMatrix = rotate(triangleRotation.x, vec3(1.0f, 0.0f, 0.0f))*rotate(triangleRotation.y, vec3(0.0f, 1.0f, 0.0f))*rotate(triangleRotation.z, vec3(1.0f, 0.0f, 1.0f));
+		//modelMatrix = translationMatrix * rotationMatrix * scaleMatrix;
+		//viewMatrix = lookAt(cameraPosition, cameraTarget, cameraUp);
+		armouredCar->update();
 
 		currentTicks = SDL_GetTicks();
 		float deltaTime = (float)(currentTicks - lastTicks) / 1000.0f;
@@ -198,7 +191,18 @@ int main(int argc, char* args[])
 
 		glClear(GL_COLOR_BUFFER_BIT);
 
-		glActiveTexture(GL_TEXTURE);
+		armouredCar->preRender();
+		GLuint currentShaderProgramID = armouredCar->getShaderProgramID();
+
+		GLint viewMatrixLocation = glGetUniformLocation(currentShaderProgramID, "viewMatrix");
+		GLint projectionMatrixLocation = glGetUniformLocation(currentShaderProgramID, "projectionMatrix");
+
+		glUniformMatrix4fv(viewMatrixLocation, 1, GL_FALSE, value_ptr(viewMatrix));
+		glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, value_ptr(projectionMatrix));
+
+		armouredCar->render();
+
+		/*glActiveTexture(GL_TEXTURE);
 		glBindTexture(GL_TEXTURE_2D, textureID);
 
 		glUseProgram(programID);
@@ -208,10 +212,10 @@ int main(int argc, char* args[])
 		glUniformMatrix4fv(modelMatrixLocation, 1, GL_FALSE, value_ptr(modelMatrix));
 		glUniformMatrix4fv(viewMatrixLocation, 1, GL_FALSE, value_ptr(viewMatrix));
 		glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, value_ptr(projectionMatrix));
-		glUniform1i(textureLocation, 0);
+		glUniform1i(textureLocation, 0);*/
 
 		// Draw
-		for (Mesh* currentMesh : meshes)
+		/*for (Mesh* currentMesh : meshes)
 		{
 			currentMesh->render();
 		}
@@ -238,18 +242,26 @@ int main(int argc, char* args[])
 
 	glDeleteProgram(programID);
 	glDeleteTextures(1, &textureID);
+	*/
 
-	//Delete context
-	SDL_GL_DeleteContext(GL_Context);
+		if (armouredCar)
+		{
+			armouredCar->destroy();
+			delete armouredCar;
+			armouredCar = nullptr;
+		}
+		//Delete context
+		SDL_GL_DeleteContext(GL_Context);
 
-	//Destroy the window and quit SDL2, NB we should do this after all cleanup in this order!!!
-	//https://wiki.libsdl.org/SDL_DestroyWindow
-	SDL_DestroyWindow(window);
+		//Destroy the window and quit SDL2, NB we should do this after all cleanup in this order!!!
+		//https://wiki.libsdl.org/SDL_DestroyWindow
+		SDL_DestroyWindow(window);
 
-	IMG_Quit();
+		IMG_Quit();
 
-	//https://wiki.libsdl.org/SDL_Quit
-	SDL_Quit();
+		//https://wiki.libsdl.org/SDL_Quit
+		SDL_Quit();
 
-	return 0;
+		return 0;
+	}
 }
