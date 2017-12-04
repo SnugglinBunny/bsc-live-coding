@@ -6,7 +6,7 @@ GameObject::GameObject()
 	m_DiffuseMapID = 0;
 	m_Position = glm::vec3(0.0f, 0.0f, 0.0f);
 	m_Scale = glm::vec3(1.0f, 1.0f, 1.0f);
-	m_Rotation = glm::vec3(0.0f, 0.0f, 0.0f);
+	m_Rotation = glm::vec3(90.0f, 0.0f, 0.0f);
 
 	m_ModelMatrix = glm::mat4(1.0f);
 
@@ -66,7 +66,7 @@ void GameObject::update()
 		glm::rotate(m_Rotation.y, glm::vec3(0.0f, 1.0f, 0.0f))*
 		glm::rotate(m_Rotation.z, glm::vec3(0.0f, 0.0f, 1.0f));
 
-	glm::mat4 modelMatrix = translationMatrix*rotationMatrix*scaleMatrix;
+	m_ModelMatrix = translationMatrix*rotationMatrix*scaleMatrix;
 }
 
 void GameObject::preRender()

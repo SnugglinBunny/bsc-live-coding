@@ -24,9 +24,25 @@ public:
 		return m_Position;
 	};
 
-	//In studio write get/set for rotation and scale.
+	void setRotation(const glm::vec3& rotation)
+	{
+		m_Rotation = rotation;
+	};
 
-	//In studio write get/set for ambient, diffuse and specular.
+	glm::vec3& getRotation()
+	{
+		return m_Rotation;
+	};
+
+	void setScale(const glm::vec3& scale)
+	{
+		m_Scale = scale;
+	};
+
+	glm::vec3& getScale()
+	{
+		return m_Scale;
+	};
 
 	glm::mat4& getModelMatrix()
 	{

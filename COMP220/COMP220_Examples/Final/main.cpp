@@ -52,34 +52,15 @@ int main(int argc, char* args[])
 		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, (char*)glewGetErrorString(glewError), "GLEW Init Failed", NULL);
 	}
 
-
-	//unsigned int numberOfVerts = 0;
-	//unsigned int numberOfIndices = 0;
-	//loadModelFromFile("Tank1.FBX", vertexbuffer, elementbuffer, numberOfVerts, numberOfIndices);
-	/*
-	std::vector<Mesh*> meshes;
-	loadMeshesFromFile("Tank1.FBX", meshes);
-
-	GLuint textureID = loadTextureFromFile("Tank1DF.png");*/
-
+	//Creating instance of game object and loading in the tank fbx file and texture
 	GameObject * armouredCar = new GameObject();
 	armouredCar->loadMeshFromFile("Tank1.FBX");
 	armouredCar->loadDiffuseMap("Tank1DF.png");
-	armouredCar->setPostition(glm::vec3(0.0f, 5.0f, 0.0f));
+	armouredCar->setPostition(glm::vec3(0.0f, 0.0f, 0.0f));
+	armouredCar->setRotation(glm::vec3(0.0f, 0.0f, 0.0f));
+	armouredCar->setScale(glm::vec3(2.0f, 2.0f, 2.0f));
 	armouredCar->loadShaderProgram("textureVert.glsl", "textureFrag.glsl");
 
-	/*
-	vec3 trianglePosition = vec3(0.0f,0.0f,0.0f);
-	vec3 triangleScale = vec3(1.0f, 1.0f, 1.0f);
-	vec3 triangleRotation = vec3(radians(0.0f), 0.0f, 0.0f);
-
-
-	mat4 translationMatrix = translate(trianglePosition);
-	mat4 scaleMatrix = scale(triangleScale);
-	mat4 rotationMatrix= rotate(triangleRotation.x, vec3(1.0f, 0.0f, 0.0f))*rotate(triangleRotation.y, vec3(0.0f, 1.0f, 0.0f))*rotate(triangleRotation.z, vec3(0.0f, 0.0f, 1.0f));
-
-	mat4 modelMatrix = translationMatrix*rotationMatrix*scaleMatrix;
-	*/
 	// Camera Properties
 	vec3 cameraPosition = vec3(0.0f, 0.0f, -8.0f);
 	vec3 cameraTarget = vec3(0.0f, 0.0f, 0.0f);
@@ -94,19 +75,6 @@ int main(int argc, char* args[])
 	mat4 viewMatrix = lookAt(cameraPosition, cameraTarget, cameraUp);
 
 	mat4 projectionMatrix = perspective(radians(90.0f), float(800 / 600), 0.1f, 100.0f);
-
-	/*
-	GLuint programID = LoadShaders("textureVert.glsl", "textureFrag.glsl");
-
-	static const GLfloat fragColour[] = { 0.0f,1.0f,0.0f,1.0f };
-
-	GLint fragColourLocation = glGetUniformLocation(programID, "fragColour");
-	GLint currentTimeLocation= glGetUniformLocation(programID, "time");
-	GLint modelMatrixLocation = glGetUniformLocation(programID, "modelMatrix");
-	GLint viewMatrixLocation = glGetUniformLocation(programID, "viewMatrix");
-	GLint projectionMatrixLocation = glGetUniformLocation(programID, "projectionMatrix");
-	GLint textureLocation = glGetUniformLocation(programID, "baseTexture");
-	*/
 
 	SDL_ShowCursor(SDL_DISABLE);
 	SDL_SetRelativeMouseMode(SDL_bool(SDL_ENABLE));
@@ -159,33 +127,47 @@ int main(int argc, char* args[])
 					break;
 				case SDLK_w:
 					FPScameraPos = cameraDirection * 0.1f;
+					cameraPosition += FPScameraPos;
+					cameraTarget += FPScameraPos;
 					break;
 				case SDLK_s:
 					FPScameraPos = -cameraDirection * 0.1f;
+					cameraPosition += FPScameraPos;
+					cameraTarget += FPScameraPos;
 					break;
 				case SDLK_a:
 					FPScameraPos = -cross(cameraDirection, cameraUp) * 0.5f;
+					cameraPosition += FPScameraPos;
+					cameraTarget += FPScameraPos;
 					break;
 				case SDLK_d:
 					FPScameraPos = cross(cameraDirection, cameraUp) * 0.5f;
+					cameraPosition += FPScameraPos;
+					cameraTarget += FPScameraPos;
+					break;
+				case SDLK_e:
+					FPScameraPos =  cameraUp * 0.1f;
+					cameraPosition += FPScameraPos;
+					cameraTarget += FPScameraPos;
+					break;
+				case SDLK_q:
+					FPScameraPos = cameraUp * 0.1f;
+					cameraPosition -= FPScameraPos;
+					cameraTarget -= FPScameraPos;
 					break;
 				}
-				cameraPosition += FPScameraPos;
-				cameraTarget += FPScameraPos;
+
 			}
 		}
 		//Update Game and Draw with OpenGL!!
-
 		//Recalculate translations
-		//rotationMatrix = rotate(triangleRotation.x, vec3(1.0f, 0.0f, 0.0f))*rotate(triangleRotation.y, vec3(0.0f, 1.0f, 0.0f))*rotate(triangleRotation.z, vec3(1.0f, 0.0f, 1.0f));
-		//modelMatrix = translationMatrix * rotationMatrix * scaleMatrix;
-		//viewMatrix = lookAt(cameraPosition, cameraTarget, cameraUp);
+		viewMatrix = lookAt(cameraPosition, cameraTarget, cameraUp);
 		armouredCar->update();
 
 		currentTicks = SDL_GetTicks();
 		float deltaTime = (float)(currentTicks - lastTicks) / 1000.0f;
 
-		glClearColor(1.0, 1.0, 1.0, 1.0);
+		glClearColor(0.0, 0.0, 0.0, 1.0);
 		glClearDepth(1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
@@ -201,48 +183,8 @@ int main(int argc, char* args[])
 		glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, value_ptr(projectionMatrix));
 
 		armouredCar->render();
-
-		/*glActiveTexture(GL_TEXTURE);
-		glBindTexture(GL_TEXTURE_2D, textureID);
-
-		glUseProgram(programID);
-
-		glUniform4fv(fragColourLocation, 1, fragColour);
-		glUniform1f(currentTimeLocation, (float)(currentTicks) / 1000.0f);
-		glUniformMatrix4fv(modelMatrixLocation, 1, GL_FALSE, value_ptr(modelMatrix));
-		glUniformMatrix4fv(viewMatrixLocation, 1, GL_FALSE, value_ptr(viewMatrix));
-		glUniformMatrix4fv(projectionMatrixLocation, 1, GL_FALSE, value_ptr(projectionMatrix));
-		glUniform1i(textureLocation, 0);*/
-
-		// Draw
-		/*for (Mesh* currentMesh : meshes)
-		{
-			currentMesh->render();
-		}
 		SDL_GL_SwapWindow(window);
-
 	}
-
-	auto iter = meshes.begin();
-	while (iter != meshes.end())
-	{
-		if ((*iter))
-		{
-			(*iter)->destroy();
-			delete (*iter);
-			iter = meshes.erase(iter);
-		}
-		else
-		{
-			iter++;
-		}
-	}
-
-	meshes.clear();
-
-	glDeleteProgram(programID);
-	glDeleteTextures(1, &textureID);
-	*/
 
 		if (armouredCar)
 		{
@@ -264,4 +206,3 @@ int main(int argc, char* args[])
 
 		return 0;
 	}
-}
