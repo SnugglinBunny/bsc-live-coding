@@ -141,7 +141,7 @@ int main(int argc, char* args[])
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, NULL);
 	
-	GLuint postProcessingProgramID = LoadShaders("passThroughVert.glsl", "postBlackAndWhite.glsl");
+	GLuint postProcessingProgramID = LoadShaders("passThroughVert.glsl", "postSepia.glsl");
 	GLint texture0Location = glGetUniformLocation(postProcessingProgramID, "texture0");
 
 	GLuint programID = LoadShaders("lightingVert.glsl", "lightingFrag.glsl");
@@ -227,6 +227,7 @@ int main(int argc, char* args[])
 	btRigidBody* carRigidBody = new btRigidBody(carRbInfo);
 
 	dynamicsWorld->addRigidBody(carRigidBody);
+	int InvertGravity = -10;
 
 	SDL_ShowCursor(SDL_DISABLE);
 	SDL_SetRelativeMouseMode(SDL_bool(SDL_ENABLE));
@@ -306,6 +307,12 @@ int main(int argc, char* args[])
 					FPScameraPos = cameraUp * 0.1f;
 					cameraPosition -= FPScameraPos;
 					cameraTarget -= FPScameraPos;
+					break;
+				case SDLK_SPACE:
+					//Invert Gravity
+					InvertGravity *= -1;
+					dynamicsWorld->setGravity(btVector3(0.0, InvertGravity, 0.0));
+					std::cout << "G = " << InvertGravity << " ";
 					break;
 				}
 			}
