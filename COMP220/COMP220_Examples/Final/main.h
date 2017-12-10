@@ -3,7 +3,6 @@
 #include <string>
 #include <vector>
 #include <fstream>
-#include <iostream>
 
 #include <SDL.h>
 #include <GL\glew.h>
@@ -14,10 +13,8 @@
 #include <glm\gtc\type_ptr.hpp>
 
 #include "vertex.h"
+#include "Model.h"
 #include "Shader.h"
 #include "Texture.h"
-#include "Model.h"
-
-#include "GameObject.h"
 
 using namespace glm;
