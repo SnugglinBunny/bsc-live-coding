@@ -12,6 +12,8 @@
 #include <glm\gtx\transform.hpp>
 #include <glm\gtc\type_ptr.hpp>
 
+#include <btBulletDynamicsCommon.h>
+
 #include "vertex.h"
 #include "Model.h"
 #include "Shader.h"

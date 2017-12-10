@@ -58,7 +58,7 @@ int main(int argc, char* args[])
 
 	GLuint textureID = loadTextureFromFile("Tank1DF.png");
 
-	vec3 trianglePosition = vec3(0.0f,0.0f,0.0f);
+	vec3 trianglePosition = vec3(0.0f, 10.0f, 0.0f);
 	vec3 triangleScale = vec3(1.0f, 1.0f, 1.0f);
 	vec3 triangleRotation = vec3(radians(0.0f), 0.0f, 0.0f);
 
@@ -70,7 +70,7 @@ int main(int argc, char* args[])
 	mat4 modelMatrix = translationMatrix*rotationMatrix*scaleMatrix;
 
 	// Camera Properties
-	vec3 cameraPosition = vec3(0.0f, 0.0f, -8.0f);
+	vec3 cameraPosition = vec3(-5.0f, 5.0f, -10.0f);
 	vec3 cameraTarget = vec3(0.0f, 0.0f, 0.0f);
 	vec3 cameraUp = vec3(0.0f, 1.0f, 0.0f);
 	vec3 cameraDirection = vec3(0.0f);
@@ -175,6 +175,59 @@ int main(int argc, char* args[])
 	GLint specularMaterialColourLocation = glGetUniformLocation(programID, "specularMaterialColour");
 	GLint specularPowerLocation = glGetUniformLocation(programID, "specularPower");
 
+	///collision configuration contains default setup for memory, collision setup. Advanced users can create their own configuration.
+	btDefaultCollisionConfiguration* collisionConfiguration = new btDefaultCollisionConfiguration();
+
+	///use the default collision dispatcher. For parallel processing you can use a diffent dispatcher (see Extras/BulletMultiThreaded)
+	btCollisionDispatcher* dispatcher = new btCollisionDispatcher(collisionConfiguration);
+
+	///btDbvtBroadphase is a good general purpose broadphase. You can also try out btAxis3Sweep.
+	btBroadphaseInterface* overlappingPairCache = new btDbvtBroadphase();
+
+	///the default constraint solver. For parallel processing you can use a different solver (see Extras/BulletMultiThreaded)
+	btSequentialImpulseConstraintSolver* solver = new btSequentialImpulseConstraintSolver;
+
+	btDiscreteDynamicsWorld* dynamicsWorld = new btDiscreteDynamicsWorld(dispatcher, overlappingPairCache, solver, collisionConfiguration);
+
+	//Set Gravity
+	dynamicsWorld->setGravity(btVector3(0, -10, 0));
+
+	//Create Ground
+	btCollisionShape* groundShape = new btBoxShape(btVector3(btScalar(50.), btScalar(2.), btScalar(50.)));
+
+	btTransform groundTransform;
+	groundTransform.setIdentity();
+	groundTransform.setOrigin(btVector3(0, -10, 0));
+
+	//using motionstate is optional, it provides interpolation capabilities, and only synchronizes 'active' objects
+	btDefaultMotionState* myMotionState = new btDefaultMotionState(groundTransform);
+
+	btScalar mass(0.);
+	btVector3 localInertia(0, 0, 0);
+
+	btRigidBody::btRigidBodyConstructionInfo rbInfo(mass, myMotionState, groundShape, localInertia);
+	btRigidBody* groundRigidBody = new btRigidBody(rbInfo);
+	//add the body to the dynamics world
+	dynamicsWorld->addRigidBody(groundRigidBody);
+
+	//Create Collision shape for tank
+	btCollisionShape* carCollisionShape = new btBoxShape(btVector3(2, 2, 2));
+
+	/// Create Dynamic Objects
+	btTransform carTransform;
+	carTransform.setIdentity();
+	carTransform.setOrigin(btVector3(trianglePosition.x, trianglePosition.y, trianglePosition.z));
+	btVector3 carInertia(0, 0, 0);
+	btScalar carMass(1.f);
+	carCollisionShape->calculateLocalInertia(mass, carInertia);
+
+	//using motionstate is recommended, it provides interpolation capabilities, and only synchronizes 'active' objects
+	btDefaultMotionState* carMotionState = new btDefaultMotionState(carTransform);
+	btRigidBody::btRigidBodyConstructionInfo carRbInfo(carMass, carMotionState, carCollisionShape, localInertia);
+	btRigidBody* carRigidBody = new btRigidBody(carRbInfo);
+
+	dynamicsWorld->addRigidBody(carRigidBody);
+
 	SDL_ShowCursor(SDL_DISABLE);
 	SDL_SetRelativeMouseMode(SDL_bool(SDL_ENABLE));
 
@@ -267,6 +320,20 @@ int main(int argc, char* args[])
 		currentTicks = SDL_GetTicks();
 		float deltaTime = (float)(currentTicks - lastTicks) / 1000.0f;
 
+		dynamicsWorld->stepSimulation(1.f / 60.f, 10);
+
+		carTransform = carRigidBody->getWorldTransform();
+		btVector3 carOrigin = carTransform.getOrigin();
+		btQuaternion carOrientation = carTransform.getRotation();
+
+		trianglePosition = vec3(carOrigin.getX(), carOrigin.getY(), carOrigin.getZ());
+
+		translationMatrix = translate(trianglePosition);
+		scaleMatrix = scale(triangleScale);
+		rotationMatrix = rotate(triangleRotation.x, vec3(1.0f, 0.0f, 0.0f))*rotate(triangleRotation.y, vec3(0.0f, 1.0f, 0.0f))*rotate(triangleRotation.z, vec3(0.0f, 0.0f, 1.0f));
+
+		modelMatrix = translationMatrix*rotationMatrix*scaleMatrix;
+
 		//Draw to this buffer
 		glEnable(GL_DEPTH_TEST);
 		glBindFramebuffer(GL_FRAMEBUFFER, frameBufferID);
@@ -325,6 +392,31 @@ int main(int argc, char* args[])
 
 
 	}
+
+	dynamicsWorld->removeRigidBody(carRigidBody);
+	delete carCollisionShape;
+	delete carRigidBody->getMotionState();
+	delete carRigidBody;
+	dynamicsWorld->removeRigidBody(groundRigidBody);
+
+	//Delete Ground
+	delete groundShape;
+
+	delete groundRigidBody->getMotionState();
+
+	//delete dynamics world
+	delete dynamicsWorld;
+
+	//delete solver
+	delete solver;
+
+	//delete broadphase
+	delete overlappingPairCache;
+
+	//delete dispatcher
+	delete dispatcher;
+
+	delete collisionConfiguration;
 
 	auto iter = meshes.begin();
 	while (iter != meshes.end())
