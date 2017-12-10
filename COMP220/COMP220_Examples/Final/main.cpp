@@ -91,7 +91,7 @@ int main(int argc, char* args[])
 	vec4 ambientLightColour = vec4(1.0f, 1.0f, 1.0f, 1.0f);
 
 	//Material
-	vec4 ambientMaterialColour = vec4(0.2f, 0.2f, 0.2f, 1.0f);
+	vec4 ambientMaterialColour = vec4(0.1f, 0.1f, 0.1f, 1.0f);
 	vec4 diffuseMaterialColour = vec4(0.6f, 0.6, 0.6f, 1.0f);
 	vec4 specularMaterialColour = vec4(1.0f, 1.0, 1.0, 1.0f);
 	float specularPower = 25.0f;
@@ -141,7 +141,7 @@ int main(int argc, char* args[])
 	glEnableVertexAttribArray(0);
 	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, NULL);
 	
-	GLuint postProcessingProgramID = LoadShaders("passThroughVert.glsl", "postTextureFrag.glsl");
+	GLuint postProcessingProgramID = LoadShaders("passThroughVert.glsl", "postBlackAndWhite.glsl");
 	GLint texture0Location = glGetUniformLocation(postProcessingProgramID, "texture0");
 
 	GLuint programID = LoadShaders("lightingVert.glsl", "lightingFrag.glsl");
@@ -270,7 +270,7 @@ int main(int argc, char* args[])
 		//Draw to this buffer
 		glEnable(GL_DEPTH_TEST);
 		glBindFramebuffer(GL_FRAMEBUFFER, frameBufferID);
-		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		glClearColor(1.0f, 0.0f, 0.0f, 1.0f);
 		glClearDepth(1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
