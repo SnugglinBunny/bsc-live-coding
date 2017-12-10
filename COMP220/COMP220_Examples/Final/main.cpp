@@ -18,7 +18,7 @@ int main(int argc, char* args[])
 
 	//Create a window, note we have to free the pointer returned using the DestroyWindow Function
 	//https://wiki.libsdl.org/SDL_CreateWindow
-	SDL_Window* window = SDL_CreateWindow("SDL2 Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 1280, 720, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
+	SDL_Window* window = SDL_CreateWindow("SDL2 Window", SDL_WINDOWPOS_UNDEFINED, SDL_WINDOWPOS_UNDEFINED, 800, 640, SDL_WINDOW_SHOWN | SDL_WINDOW_OPENGL);
 	//Checks to see if the window has been created, the pointer will have a value of some kind
 	if (window == nullptr)
 	{
@@ -96,18 +96,70 @@ int main(int argc, char* args[])
 	vec4 specularMaterialColour = vec4(1.0f, 1.0, 1.0, 1.0f);
 	float specularPower = 25.0f;
 
+	//Colour Buffer Texture
+	GLuint colourBufferID = createTexture(800, 640);
+
+	//Create Depth Buffer
+	GLuint depthRenderBufferID;
+	glGenRenderbuffers(1, &depthRenderBufferID);
+	glBindRenderbuffer(GL_RENDERBUFFER, depthRenderBufferID);
+	glRenderbufferStorage(GL_RENDERBUFFER, GL_DEPTH_COMPONENT16, 800, 640);
+
+	//Generate Framebuffer
+	GLuint frameBufferID;
+	glGenFramebuffers(1, &frameBufferID);
+	glBindFramebuffer(GL_FRAMEBUFFER, frameBufferID);
+	glFramebufferRenderbuffer(GL_FRAMEBUFFER, GL_DEPTH_ATTACHMENT, GL_RENDERBUFFER, depthRenderBufferID);
+	glFramebufferTexture(GL_FRAMEBUFFER, GL_COLOR_ATTACHMENT0, colourBufferID, 0);
+
+	//Check for buffer creation
+	if (glCheckFramebufferStatus(GL_FRAMEBUFFER) != GL_FRAMEBUFFER_COMPLETE)
+	{
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Unable to create frame buffer for post processing.", "Frame Buffer Error" , NULL);
+	}
+
+	//Create screen aligned quad
+	GLfloat screenverts[] =
+	{
+		-1, -1,
+		1, -1,
+		-1, 1,
+		1, 1
+	};
+
+	GLuint screenQuadVBOID;
+	glGenBuffers(1, &screenQuadVBOID);
+	glBindBuffer(GL_ARRAY_BUFFER, screenQuadVBOID);
+	glBufferData(GL_ARRAY_BUFFER, 8 * sizeof(GLfloat), screenverts, GL_STATIC_DRAW);
+
+	//Create vertex array object
+	GLuint screenVAO;
+	glGenVertexArrays(1, &screenVAO);
+	glBindVertexArray(screenVAO);
+	glBindBuffer(GL_ARRAY_BUFFER, screenQuadVBOID);
+
+	glEnableVertexAttribArray(0);
+	glVertexAttribPointer(0, 2, GL_FLOAT, GL_FALSE, 0, NULL);
+	
+	GLuint postProcessingProgramID = LoadShaders("passThroughVert.glsl", "postTextureFrag.glsl");
+	GLint texture0Location = glGetUniformLocation(postProcessingProgramID, "texture0");
+
 	GLuint programID = LoadShaders("lightingVert.glsl", "lightingFrag.glsl");
 
-	
+	GLint fragColourLocation = glGetUniformLocation(programID, "fragColour");
+	if (fragColourLocation < 0)
+	{
+		printf("Unable to find %s uniform\n", "fragColour");
+	}
 
 	static const GLfloat fragColour[] = { 0.0f,1.0f,0.0f,1.0f };
 
-	GLint fragColourLocation = glGetUniformLocation(programID, "fragColour");
 	GLint currentTimeLocation= glGetUniformLocation(programID, "time");
 	GLint modelMatrixLocation = glGetUniformLocation(programID, "modelMatrix");
 	GLint viewMatrixLocation = glGetUniformLocation(programID, "viewMatrix");
 	GLint projectionMatrixLocation = glGetUniformLocation(programID, "projectionMatrix");
 	GLint textureLocation = glGetUniformLocation(programID, "baseTexture");
+
 	//Camera Location
 	GLint cameraPositionLocation = glGetUniformLocation(programID, "cameraPosition");
 
@@ -215,13 +267,15 @@ int main(int argc, char* args[])
 		currentTicks = SDL_GetTicks();
 		float deltaTime = (float)(currentTicks - lastTicks) / 1000.0f;
 
-		glClearColor(1.0, 1.0, 1.0, 1.0);
+		//Draw to this buffer
+		glEnable(GL_DEPTH_TEST);
+		glBindFramebuffer(GL_FRAMEBUFFER, frameBufferID);
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
 		glClearDepth(1.0f);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 
-		glClear(GL_COLOR_BUFFER_BIT);
 
-		glActiveTexture(GL_TEXTURE);
+		glActiveTexture(GL_TEXTURE0);
 		glBindTexture(GL_TEXTURE_2D, textureID);
 
 		glUseProgram(programID);
@@ -237,8 +291,8 @@ int main(int argc, char* args[])
 		glUniform1i(textureLocation, 0);
 
 		glUniform3fv(lightDirectionLocation, 1, value_ptr(lightDirection));
-		glUniform4fv(diffuseLightColourLocation, 1, value_ptr(diffuseLightColour));
 		glUniform4fv(ambientLightColourLocation, 1, value_ptr(ambientLightColour));
+		glUniform4fv(diffuseLightColourLocation, 1, value_ptr(diffuseLightColour));
 		glUniform4fv(specularLightColourLocation, 1, value_ptr(specularLightColour));
 
 		glUniform4fv(ambientMaterialColourLocation, 1, value_ptr(ambientMaterialColour));
@@ -246,12 +300,29 @@ int main(int argc, char* args[])
 		glUniform4fv(specularMaterialColourLocation, 1, value_ptr(specularMaterialColour));
 		glUniform1f(specularPowerLocation, specularPower);
 
-		// Draw
-		for (Mesh* currentMesh : meshes)
+		for (Mesh *pMesh : meshes)
 		{
-			currentMesh->render();
+			pMesh->render();
 		}
+
+		glDisable(GL_DEPTH_TEST);
+		glBindFramebuffer(GL_FRAMEBUFFER, 0);
+		glClearColor(0.0f, 0.0f, 0.0f, 1.0f);
+		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
+
+		//Bind Post Processing Shaders
+		glUseProgram(postProcessingProgramID);
+
+		//Activate texture unit 0 for the colour buffer
+		glActiveTexture(GL_TEXTURE0);
+		glBindTexture(GL_TEXTURE_2D, colourBufferID);
+		glUniform1i(texture0Location, 0);
+
+		glBindVertexArray(screenVAO);
+		glDrawArrays(GL_TRIANGLE_STRIP, 0, 4);
+
 		SDL_GL_SwapWindow(window);
+
 
 	}
 
@@ -270,6 +341,14 @@ int main(int argc, char* args[])
 		}
 	}
 
+	glDeleteProgram(postProcessingProgramID);
+	glDeleteVertexArrays(1, &screenVAO);
+	glDeleteBuffers(1, &screenQuadVBOID);
+
+	glDeleteFramebuffers(1, &frameBufferID);
+	glDeleteRenderbuffers(1, &depthRenderBufferID);
+	glDeleteTextures(1, &colourBufferID);
+	
 	meshes.clear();
 
 	glDeleteProgram(programID);
