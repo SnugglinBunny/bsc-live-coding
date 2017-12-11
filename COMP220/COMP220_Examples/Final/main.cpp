@@ -149,7 +149,7 @@ int main(int argc, char* args[])
 	GLint fragColourLocation = glGetUniformLocation(programID, "fragColour");
 	if (fragColourLocation < 0)
 	{
-		printf("Unable to find %s uniform\n", "fragColour");
+		SDL_ShowSimpleMessageBox(SDL_MESSAGEBOX_ERROR, "Unable to find %s uniform\n", "fragColour", NULL);
 	}
 
 	static const GLfloat fragColour[] = { 0.0f,1.0f,0.0f,1.0f };
