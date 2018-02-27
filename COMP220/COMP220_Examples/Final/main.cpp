@@ -84,6 +84,9 @@ int main(int argc, char* args[])
 
 	mat4 projectionMatrix = perspective(radians(90.0f), float(800 / 600), 0.1f, 100.0f);
 
+	//Creates raycast
+	Raycast * raycast = new Raycast();
+	
 	//Light
 	vec3 lightDirection = vec3(0.0f, 0.0f, -1.0f);
 	vec4 diffuseLightColour = vec4(1.0f, 1.0f, 1.0f, 1.0f);
@@ -308,6 +311,10 @@ int main(int argc, char* args[])
 					cameraPosition -= FPScameraPos;
 					cameraTarget -= FPScameraPos;
 					break;
+				case SDLK_r:
+					// Fires raycast
+					raycast->update(camera, dynamicsWorld);
+					break;
 				case SDLK_SPACE:
 					//Invert Gravity
 					InvertGravity *= -1;
@@ -406,6 +413,9 @@ int main(int argc, char* args[])
 	delete carRigidBody;
 	dynamicsWorld->removeRigidBody(groundRigidBody);
 
+	//Delete Raycast
+	delete raycast;
+	
 	//Delete Ground
 	delete groundShape;
 
